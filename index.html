@@ -9,7 +9,16 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="CSS/style.css" />
+    <link rel="stylesheet" href="CSS/sidebar.css" />
+    <link rel="stylesheet" href="CSS/main.css" />
   </head>
   <body>
     <div class="app">
@@ -26,9 +35,6 @@
           <a href="#" class="nav__item"
             ><i class="ti ti-map"></i><span>Map</span></a
           >
-          <a href="#" class="nav__item"
-            ><i class="ti ti-settings"></i><span>Settings</span></a
-          >
         </nav>
       </aside>
 
@@ -39,6 +45,7 @@
           <input
             type="text"
             id="search-input"
+            aria-label="Search city"
             placeholder="Search for cities..."
             autocomplete="off"
           />
@@ -50,25 +57,30 @@
             <p id="rain-chance">Chance of rain: 0%</p>
             <div class="current__temp" id="temp">24°</div>
           </div>
-          <div class="current__icon" id="current-icon"></div>
+          <div class="current__icon" id="current-icon">
+            <i class="ti ti-sun"></i>
+          </div>
         </section>
 
         <section class="hourly glass">
-          <h2>TODAY'S FORCAST</h2>
+          <h2>TODAY'S FORECAST</h2>
           <div class="hourly__list" id="hourly-list">
             <div class="hourly-item">
               <span class="time">06:00 AM</span>
               <i class="ti ti-cloud"></i>
               <span class="temp">16°</span>
             </div>
-            ...
+            <div class="hourly-item">
+              <span class="time">06:00 AM</span>
+              <i class="ti ti-cloud"></i>
+              <span class="temp">16°</span>
+            </div>
           </div>
         </section>
 
         <section class="details glass">
           <div class="details__header">
             <h2>Air conditions</h2>
-            <button type="button" class="btn">See more</button>
           </div>
 
           <div class="details__grid">
@@ -97,10 +109,10 @@
             </div>
 
             <div class="stat">
-              <i class="ti ti-gauge"></i>
+              <i class="ti ti-sun"></i>
               <div>
-                <span class="label">Pressure</span
-                ><strong id="pressure">1014 hPa</strong>
+                <span class="label">UV index</span
+                ><strong id="uv-index">3</strong>
               </div>
             </div>
           </div>
@@ -115,7 +127,11 @@
             <i class="ti ti-sun"></i>
             <span class="range">26 / 15</span>
           </li>
-          ...
+          <li class="daily__item">
+            <span class="day">Today</span>
+            <i class="ti ti-sun"></i>
+            <span class="range">26 / 15</span>
+          </li>
         </ul>
       </aside>
     </div>

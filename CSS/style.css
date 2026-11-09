@@ -15,18 +15,17 @@
   --gap: 12px;
 }
 
-/* 2. Page background */
+/* ------Page background------ */
 body {
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: "DM Sans", "Inter", system-ui, sans-serif;
   background: var(--bg);
   color: var(--text);
   min-height: 100vh;
-  padding: 20px;
+  padding: 20px 26px;
   position: relative;
   overflow-x: hidden;
 }
 
-/* Soft glowing blobs behind the cards */
 body::before,
 body::after {
   content: "";
@@ -56,36 +55,29 @@ body::after {
   );
 }
 
-/* 3. Glass card */
+/* ------Glass card------ */
 .glass {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius);
-
   backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-
   padding: 18px;
 }
 
-/* 4. Main layout */
+/* ------Main layout------ */
 .app {
   display: grid;
-
   grid-template-columns:
     minmax(65px, 0.25fr)
     minmax(0, 2.2fr)
     minmax(220px, 1fr);
-
   width: 100%;
   min-height: calc(100vh - 40px);
-
   gap: var(--gap);
-
   transition: grid-template-columns 0.3s ease;
 }
 
-/* 5. Main content */
+/* ------Main content------ */
 .main {
   display: flex;
   flex-direction: column;
@@ -94,19 +86,19 @@ body::after {
   min-height: 100%;
 }
 
-/* 6. Sidebar */
+/* ------Sidebar------ */
 .sidebar {
   min-width: 0;
   height: 100%;
 }
 
-/* 7. Forecast */
+/* ------Forecast------ */
 .forecast {
   min-width: 0;
   height: 100%;
 }
 
-/* 8. Icons */
+/* ------Icons------ */
 .ti {
   font-size: 22px;
 }
