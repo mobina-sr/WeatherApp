@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!--sidebar-->
+      <aside class="sidebar glass">
+        <div class="logo"><i class="ti ti-wind"></i></div>
+        <nav class="nav">
+          <a href="#" class="nav__item active"
+            ><i class="ti ti-cloud"></i><span>Weather</span></a
+          >
+          <a href="#" class="nav__item"
+            ><i class="ti ti-list"></i><span>Cities</span></a
+          >
+          <a href="#" class="nav__item"
+            ><i class="ti ti-map"></i><span>Map</span></a
+          >
+          <a href="#" class="nav__item"
+            ><i class="ti ti-settings"></i><span>Settings</span></a
+          >
+        </nav>
+      </aside>
+
+      <!--main column-->
+      <main class="main">
+        <form class="search glass" id="search-form">
+          <i class="ti ti-search"></i>
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Search for cities..."
+            autocomplete="off"
+          />
+        </form>
+
+        <section class="current glass">
+          <div class="current__info">
+            <h1 id="city">Tehran</h1>
+            <p id="rain-chance">Chance of rain: 0%</p>
+            <div class="current__temp" id="temp">24°</div>
+          </div>
+          <div class="current__icon" id="current-icon"></div>
+        </section>
+
+        <section class="hourly glass">
+          <h2>TODAY'S FORCAST</h2>
+          <div class="hourly__list" id="hourly-list">
+            <div class="hourly-item">
+              <span class="time">06:00 AM</span>
+              <i class="ti ti-cloud"></i>
+              <span class="temp">16°</span>
+            </div>
+            ...
+          </div>
+        </section>
+
+        <section class="details glass">
+          <div class="details__header">
+            <h2>Air conditions</h2>
+            <button type="button" class="btn">See more</button>
+          </div>
+
+          <div class="details__grid">
+            <div class="stat">
+              <i class="ti ti-temperature"></i>
+              <div>
+                <span class="label">Real feel</span
+                ><strong id="feels-like">23°</strong>
+              </div>
+            </div>
+
+            <div class="stat">
+              <i class="ti ti-wind"></i>
+              <div>
+                <span class="label">Wind</span
+                ><strong id="wind">12 km/h</strong>
+              </div>
+            </div>
+
+            <div class="stat">
+              <i class="ti ti-droplet"></i>
+              <div>
+                <span class="label">Humidity</span
+                ><strong id="humidity">48%</strong>
+              </div>
+            </div>
+
+            <div class="stat">
+              <i class="ti ti-gauge"></i>
+              <div>
+                <span class="label">Pressure</span
+                ><strong id="pressure">1014 hPa</strong>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <aside class="daily glass">
+        <h2>7-day forecast</h2>
+        <ul class="daily__list" id="daily-list">
+          <li class="daily__item">
+            <span class="day">Today</span>
+            <i class="ti ti-sun"></i>
+            <span class="range">26 / 15</span>
+          </li>
+          ...
+        </ul>
+      </aside>
+    </div>
+  </body>
+</html>
