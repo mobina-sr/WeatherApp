@@ -1,0 +1,75 @@
+/* ------sidebar------ */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  padding: 16px 8px;
+  min-width: 0;
+  height: 100%;
+}
+
+.logo {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(59, 130, 246, 0.3);
+  border-radius: 14px;
+  color: white;
+  flex-shrink: 0;
+}
+
+.logo i {
+  font-size: 26px;
+}
+
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 18px;
+}
+
+.nav__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 8px 2px;
+  border-radius: 12px;
+  color: var(--muted);
+  text-decoration: none;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.nav__item i {
+  font-size: 24px;
+}
+
+.nav__item span {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.nav__item:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+.nav__item.active {
+  background: rgba(59, 130, 246, 0.25);
+  color: white;
+}
+
+.nav__item.active i {
+  color: white;
+}
