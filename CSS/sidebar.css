@@ -15,9 +15,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(59, 130, 246, 0.3);
+  background: var(--logo-bg);
   border-radius: 14px;
-  color: white;
+  color: var(--text);
   flex-shrink: 0;
 }
 
@@ -60,16 +60,16 @@
 }
 
 .nav__item:hover {
-  color: white;
-  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+  background: var(--glass-bg);
   transform: translateY(-1px);
 }
 
 .nav__item.active {
   background: rgba(59, 130, 246, 0.25);
-  color: white;
+  color: var(--text);
 }
 
 .nav__item.active i {
-  color: white;
+  color: var(--text);
 }
