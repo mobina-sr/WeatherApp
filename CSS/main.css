@@ -40,7 +40,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 24px 48px;
+  padding: 24px 32px;
   overflow: hidden;
 }
 
@@ -77,26 +77,33 @@
 .current__icon .ti {
   font-size: 150px;
   color: #fbbf24;
+  filter: drop-shadow(0 0 30px rgba(251, 191, 36, 0.55));
 }
 
 /* ------hourly weather------ */
 .hourly h2,
 .details h2,
 .daily h2 {
-  font-size: 16px;
-  font-weight: 400;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
 }
 
 .hourly h2 {
-  color: var(--muted);
   margin-bottom: 16px;
+}
+
+.daily h2 {
+  margin-bottom: 20px;
 }
 
 .hourly__list {
   display: grid;
   grid-auto-flow: column;
-  grid-auto-columns: minmax(0, 1fr);
-  gap: 12px;
+  grid-auto-columns: minmax(70px, 1fr);
+  gap: 8px;
   overflow-x: auto;
   scrollbar-width: thin;
   scrollbar-color: var(--glass-border) transparent;
@@ -108,11 +115,8 @@
   align-items: center;
   gap: 6px;
   min-width: 0;
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.hourly-item:last-child {
-  border-right: none;
+  padding: 10px 0;
+  border-radius: 14px;
 }
 
 .hourly-item .time {
@@ -142,10 +146,6 @@
   align-items: center;
   color: var(--muted);
   margin-bottom: 22px;
-}
-
-.details__header h2 {
-  font-size: 18px;
 }
 
 .details__grid {
@@ -192,26 +192,39 @@
   flex-direction: column;
 }
 
-.daily h2 {
-  margin-bottom: 20px;
-  font-size: 18px;
-  color: var(--muted);
-}
-
 .daily__list {
   list-style: none;
   display: flex;
   flex-direction: column;
   flex: 1;
+  min-height: 0;
 }
 
 .daily__item {
+  flex: 1 1 0;
+  min-height: 0;
   display: grid;
-  grid-template-columns: 1fr 34px 1fr;
+  grid-template-columns: 52px 34px 40px minmax(0, 1fr) 40px;
   align-items: center;
-  gap: 10px;
-  min-height: 68px;
+  gap: 8px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.daily__item .min {
+  text-align: right;
+  font-size: 16px;
+  color: var(--muted);
+}
+
+.daily__item .max {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.bar {
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(to right, #3b82f6, #fbbf24);
 }
 
 .daily__item:last-child {
@@ -226,11 +239,4 @@
 .daily__item i {
   font-size: 26px;
   text-align: center;
-}
-
-.daily__item .range {
-  text-align: right;
-  font-size: 16px;
-  font-weight: 600;
-  white-space: nowrap;
 }
