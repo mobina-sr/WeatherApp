@@ -5,9 +5,12 @@ import { renderWeather } from "./ui.js";
 
 const searchForm = document.getElementById("search-form");
 const searchInput = document.getElementById("search-input");
+const loader = document.querySelector(".ti-loader");
 
 async function loadCityWeather(city) {
   try {
+    loader.classList.add("loading");
+
     const place = await geocodeCity(city);
     const weather = await fetchWeather(place.latitude, place.longitude);
 
@@ -27,6 +30,8 @@ async function loadCityWeather(city) {
     );
 
     searchInput.value = "";
+  } finally {
+    loader.classList.remove("loading");
   }
 }
 
