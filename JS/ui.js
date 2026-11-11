@@ -1,6 +1,7 @@
-import { getWeatherInfo, formatHour } from "./helpers.js";
+import { getWeatherInfo, formatHour, formatDay } from "./helpers.js";
 
 //---------------------------------
+// hourly
 
 function setText(id, value) {
   document.getElementById(id).textContent = value;
@@ -32,6 +33,33 @@ function renderHourly(hourly, currentTime) {
   }
 }
 
+//----------------------------------------
+// daily
+
+function renderDaily(daily) {
+  const list = document.getElementById("daily-list");
+  list.innerHTML = "";
+
+  daily.time.forEach((date, i) => {
+    const { icon } = getWeatherInfo(daily.weather_code[i]);
+
+    const item = document.createElement("li");
+    item.className = "daily__item";
+    item.innerHTML = `
+      <span class="day">${formatDay(date, i)}</span>
+      <i class="ti ${icon}"></i>
+      <span class="min">${Math.round(daily.temperature_2m_min[i])}°</span>
+      <div class="bar"></div>
+      <span class="max">${Math.round(daily.temperature_2m_max[i])}°</span>
+    `;
+
+    list.appendChild(item);
+  });
+}
+
+//----------------------------
+// render weather
+
 export function renderWeather(place, weather) {
   const { current, daily } = weather;
   const { label, icon } = getWeatherInfo(weather.current.weather_code);
@@ -56,4 +84,7 @@ export function renderWeather(place, weather) {
 
   // hourly
   renderHourly(weather.hourly, current.time);
+
+  // daily
+  renderDaily(daily);
 }

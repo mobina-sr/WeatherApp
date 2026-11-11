@@ -25,3 +25,10 @@ export function formatHour(time) {
   const hour12 = hour % 12 || 12;
   return `${hour12} ${suffix}`;
 }
+
+export function formatDay(time, index) {
+  if (index === 0) return "Today";
+  return new Date(`${time}T00:00:00`).toLocaleDateString("en-US", {
+    weekday: "short",
+  });
+}

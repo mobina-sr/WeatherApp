@@ -7,7 +7,7 @@ async function init() {
   renderWeather(place, weather);
 
   window.weather = weather;
-  console.log(weather);
+  console.log(weather.daily.time, weather.daily.weather_code);
   console.table(weather.current);
 }
 
