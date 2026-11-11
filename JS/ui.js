@@ -62,7 +62,7 @@ function renderDaily(daily) {
 
 export function renderWeather(place, weather) {
   const { current, daily } = weather;
-  const { label, icon } = getWeatherInfo(weather.current.weather_code);
+  const { label, icon, color } = getWeatherInfo(weather.current.weather_code);
 
   const max = Math.round(weather.daily.temperature_2m_max[0]);
   const min = Math.round(weather.daily.temperature_2m_min[0]);
@@ -73,8 +73,15 @@ export function renderWeather(place, weather) {
   setText("temp", `${Math.round(current.temperature_2m)}°`);
   setText("condition", `${label} · H ${max}° - L ${min}°`);
   setText("rain-chance", `Chance of rain: ${rain ?? 0}%`);
-  document.getElementById("current-icon").innerHTML =
-    `<i class="ti ${icon}"></i>`;
+  document.getElementById("current-icon").innerHTML = `
+  <i
+    class="ti ${icon}"
+    style="
+      color: ${color};
+      filter: drop-shadow(0 0 30px ${color}88);
+    "
+  ></i>
+`;
 
   // air conditions
   setText("feels-like", `${Math.round(current.apparent_temperature)}°`);
