@@ -1,7 +1,35 @@
-import { getWeatherInfo } from "./helpers.js";
+import { getWeatherInfo, formatHour } from "./helpers.js";
+
+//---------------------------------
 
 function setText(id, value) {
   document.getElementById(id).textContent = value;
+}
+
+function renderHourly(hourly, currentTime) {
+  const list = document.getElementById("hourly-list");
+
+  const nowHour = currentTime.slice(0, 13);
+  const start = hourly.time.findIndex((t) => t.startsWith(nowHour));
+  if (start === -1) return;
+
+  list.innerHTML = "";
+
+  for (let i = start; i < start + 24; i++) {
+    const { icon } = getWeatherInfo(hourly.weather_code[i]);
+    const isNow = i === start;
+
+    const item = document.createElement("div");
+
+    item.className = isNow ? "hourly-item active" : "hourly-item";
+    item.innerHTML = `
+      <span class="time">${isNow ? "Now" : formatHour(hourly.time[i])}</span>
+      <i class="ti ${icon}"></i>
+      <span class="temp">${Math.round(hourly.temperature_2m[i])}°</span>
+    `;
+
+    list.appendChild(item);
+  }
 }
 
 export function renderWeather(place, weather) {
@@ -25,4 +53,7 @@ export function renderWeather(place, weather) {
   setText("wind", `${Math.round(current.wind_speed_10m)} km/h`);
   setText("humidity", `${Math.round(current.relative_humidity_2m)}%`);
   setText("uv-index", Math.round(current.uv_index));
+
+  // hourly
+  renderHourly(weather.hourly, current.time);
 }

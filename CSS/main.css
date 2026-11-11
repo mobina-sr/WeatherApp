@@ -119,6 +119,14 @@
   border-radius: 14px;
 }
 
+.hourly-item.active {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.hourly-item.active .time {
+  color: var(--text);
+}
+
 .hourly-item .time {
   color: var(--muted);
   font-size: 12px;

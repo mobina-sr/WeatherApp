@@ -18,3 +18,10 @@ export function getWeatherInfo(code) {
   if (code >= 95) return { label: "Thunderstorm", icon: "ti-cloud-storm" };
   return { label: "Unknown", icon: "ti-cloud" };
 }
+
+export function formatHour(time) {
+  const hour = Number(time.slice(11, 13));
+  const suffix = hour >= 12 ? "PM" : "AM";
+  const hour12 = hour % 12 || 12;
+  return `${hour12} ${suffix}`;
+}
