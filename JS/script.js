@@ -1,14 +1,45 @@
 import { geocodeCity, fetchWeather } from "./api.js";
 import { renderWeather } from "./ui.js";
 
-async function init() {
-  const place = await geocodeCity("Karaj");
-  const weather = await fetchWeather(place.latitude, place.longitude);
-  renderWeather(place, weather);
+//--------------------------------------
 
-  window.weather = weather;
-  console.log(weather.daily.time, weather.daily.weather_code);
-  console.table(weather.current);
+const searchForm = document.getElementById("search-form");
+const searchInput = document.getElementById("search-input");
+
+async function loadCityWeather(city) {
+  try {
+    const place = await geocodeCity(city);
+    const weather = await fetchWeather(place.latitude, place.longitude);
+
+    renderWeather(place, weather);
+    searchInput.value = "";
+
+    window.weather = weather;
+    console.log(weather.daily.time, weather.daily.weather_code);
+    console.table(weather.current);
+  } catch (error) {
+    console.error(error);
+
+    alert(
+      error.message === "City not found"
+        ? "City not found. Try another name."
+        : "Unable to load weather. Please try again.",
+    );
+
+    searchInput.value = "";
+  }
 }
 
-init();
+//------------------------------
+// form
+
+searchForm.addEventListener("submit", function (e) {
+  e.preventDefault();
+
+  const city = searchInput.value.trim();
+
+  if (!city) return;
+  loadCityWeather(city);
+});
+
+loadCityWeather("Tehran");
