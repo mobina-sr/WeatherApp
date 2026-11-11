@@ -1,9 +1,17 @@
-export function getWeatherInfo(code) {
-  if (code === 0) return { label: "Sunny", icon: "ti-sun", color: "#FFC107" };
+export function getWeatherInfo(code, isDay = 1) {
+  if (code === 0)
+    return {
+      label: isDay ? "Sunny" : "Clear night",
+      icon: isDay ? "ti-sun" : "ti-moon",
+      color: isDay ? "#FFC107" : "#94A3B8",
+    };
 
   if (code === 1)
-    return { label: "Mostly sunny", icon: "ti-sun", color: "#FFC107" };
-
+    return {
+      label: isDay ? "Mostly sunny" : "Mostly clear",
+      icon: isDay ? "ti-sun" : "ti-moon",
+      color: isDay ? "#FFC107" : "#94A3B8",
+    };
   if (code === 2)
     return { label: "Partly cloudy", icon: "ti-cloud", color: "#CBD5E1" };
 

@@ -17,7 +17,7 @@ function renderHourly(hourly, currentTime) {
   list.innerHTML = "";
 
   for (let i = start; i < start + 24; i++) {
-    const { icon } = getWeatherInfo(hourly.weather_code[i]);
+    const { icon } = getWeatherInfo(hourly.weather_code[i], hourly.is_day[i]);
     const isNow = i === start;
 
     const item = document.createElement("div");
@@ -62,8 +62,10 @@ function renderDaily(daily) {
 
 export function renderWeather(place, weather) {
   const { current, daily } = weather;
-  const { label, icon, color } = getWeatherInfo(weather.current.weather_code);
-
+  const { label, icon, color } = getWeatherInfo(
+    current.weather_code,
+    current.is_day,
+  );
   const max = Math.round(weather.daily.temperature_2m_max[0]);
   const min = Math.round(weather.daily.temperature_2m_min[0]);
   const rain = weather.daily.precipitation_probability_max[0];
