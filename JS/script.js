@@ -41,7 +41,7 @@ async function run(task) {
 }
 
 //--------------------------------------
-// city load
+// search city
 
 function loadCityWeather(city) {
   return run(async () => {
@@ -75,5 +75,9 @@ locateBtn.addEventListener("click", () =>
 //------------------------------
 
 const lastPlace = loadLastPlace();
-if (lastPlace) loadPlaceWeather(lastPlace);
-else loadCityWeather("Tehran");
+
+if (lastPlace) {
+  loadPlaceWeather(lastPlace);
+} else {
+  loadCityWeather("Tehran");
+}

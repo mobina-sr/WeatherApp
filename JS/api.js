@@ -1,5 +1,7 @@
 import { GEO_URL, WEATHER_URL } from "./config.js";
 
+//------------------------------------
+
 export async function geocodeCity(name) {
   const res = await fetch(
     `${GEO_URL}?name=${encodeURIComponent(name)}&count=1`,
@@ -12,6 +14,8 @@ export async function geocodeCity(name) {
   const { name: city, latitude, longitude, country } = data.results[0];
   return { city, latitude, longitude, country };
 }
+
+//------------------------------------
 
 export async function fetchWeather(latitude, longitude) {
   const params = new URLSearchParams({
