@@ -12,6 +12,7 @@ export function getWeatherInfo(code, isDay = 1) {
       icon: isDay ? "ti-sun" : "ti-moon",
       color: isDay ? "#FFC107" : "#94A3B8",
     };
+
   if (code === 2)
     return { label: "Partly cloudy", icon: "ti-cloud", color: "#CBD5E1" };
 
@@ -53,5 +54,19 @@ export function formatDay(time, index) {
   if (index === 0) return "Today";
   return new Date(`${time}T00:00:00`).toLocaleDateString("en-US", {
     weekday: "short",
+  });
+}
+
+export function getUserPosition() {
+  return new Promise((res, reject) => {
+    if (!navigator.geolocation) {
+      reject(new Error("Geolocation unsupported"));
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (pos) => res(pos.coords),
+      () => reject(new Error("Location unavailable")),
+    );
   });
 }

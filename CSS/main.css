@@ -20,6 +20,29 @@
   color: var(--text);
 }
 
+.search__location {
+  display: flex;
+  align-items: center;
+  padding: 0.4rem;
+  background: transparent;
+  border: none;
+  border-radius: 0.75rem;
+  color: var(--muted);
+  cursor: pointer;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.search__location:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.search__location .ti {
+  font-size: 1.5rem;
+}
+
 .ti-loader {
   display: inline-block;
   font-size: 24px;
