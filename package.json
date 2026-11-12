@@ -1,0 +1,21 @@
+{
+  "name": "weather",
+  "version": "1.0.0",
+  "description": "A weather dashboard built with HTML, CSS and JavaScript, powered by the Open-Meteo API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mobina-sr/WeatherApp.git"
+  },
+  "keywords": [],
+  "author": "Mobina",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/mobina-sr/WeatherApp/issues"
+  },
+  "homepage": "https://github.com/mobina-sr/WeatherApp#readme"
+}
