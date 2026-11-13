@@ -75,10 +75,10 @@
 
         <section class="current glass">
           <div class="current__info">
-            <h1 id="city">Tehran</h1>
-            <p id="rain-chance">Chance of rain: 0%</p>
-            <div class="current__temp" id="temp">24°</div>
-            <p class="current__desc" id="condition">Sunny · H 26° - L 15°</p>
+            <h1 id="city">Loading</h1>
+            <p id="rain-chance">...</p>
+            <div class="current__temp" id="temp">Loading</div>
+            <p class="current__desc" id="condition">...</p>
           </div>
           <div class="current__icon" id="current-icon">
             <i class="ti ti-sun"></i>
@@ -89,9 +89,9 @@
           <h2>TODAY'S FORECAST</h2>
           <div class="hourly__list" id="hourly-list">
             <div class="hourly-item active">
-              <span class="time">Now</span>
+              <span class="time">Loading</span>
               <i class="ti ti-sun"></i>
-              <span class="temp">24°</span>
+              <span class="temp">Loading</span>
             </div>
           </div>
         </section>
@@ -106,7 +106,7 @@
               <i class="ti ti-temperature"></i>
               <div>
                 <span class="label">Real feel</span
-                ><strong id="feels-like">23°</strong>
+                ><strong id="feels-like">Loading</strong>
               </div>
             </div>
 
@@ -114,7 +114,7 @@
               <i class="ti ti-wind"></i>
               <div>
                 <span class="label">Wind</span
-                ><strong id="wind">12 km/h</strong>
+                ><strong id="wind">Loading</strong>
               </div>
             </div>
 
@@ -122,7 +122,7 @@
               <i class="ti ti-droplet"></i>
               <div>
                 <span class="label">Humidity</span
-                ><strong id="humidity">48%</strong>
+                ><strong id="humidity">Loading</strong>
               </div>
             </div>
 
@@ -130,7 +130,7 @@
               <i class="ti ti-sun"></i>
               <div>
                 <span class="label">UV index</span
-                ><strong id="uv-index">3</strong>
+                ><strong id="uv-index">Loading</strong>
               </div>
             </div>
           </div>
@@ -141,45 +141,15 @@
         <h2>7-DAY FORECAST</h2>
         <ul class="daily__list" id="daily-list">
           <li class="daily__item">
-            <span class="day">Today</span>
+            <span class="day">Loading</span>
             <i class="ti ti-sun"></i>
-            <span class="min">15°</span>
+            <span class="min">...</span>
             <div class="bar"></div>
-            <span class="max">26°</span>
+            <span class="max">...</span>
           </li>
         </ul>
       </aside>
     </div>
-
-    <dialog class="modal glass" id="cities-dialog">
-      <div class="modal__body">
-        <div class="modal__header">
-          <h2>Recent searches</h2>
-          <div class="modal__actions">
-            <button
-              type="button"
-              class="icon-btn"
-              id="cities-clear"
-              aria-label="Clear all"
-            >
-              <i class="ti ti-trash"></i>
-            </button>
-            <button
-              type="button"
-              class="icon-btn"
-              id="cities-close"
-              aria-label="Close"
-            >
-              <i class="ti ti-x"></i>
-            </button>
-          </div>
-        </div>
-        <ul class="cities__list" id="cities-list"></ul>
-        <p class="cities__empty" id="cities-empty">
-          Cities you search for will show up here.
-        </p>
-      </div>
-    </dialog>
 
     <script type="module" src="JS/script.js"></script>
   </body>
