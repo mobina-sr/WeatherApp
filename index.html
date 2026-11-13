@@ -27,15 +27,27 @@
       <aside class="sidebar glass">
         <div class="logo"><i class="ti ti-wind"></i></div>
         <nav class="nav">
-          <a href="#" class="nav__item active"
-            ><i class="ti ti-cloud"></i><span>Weather</span></a
-          >
-          <a href="#" class="nav__item"
-            ><i class="ti ti-list"></i><span>Cities</span></a
-          >
-          <a href="#" class="nav__item"
-            ><i class="ti ti-map"></i><span>Map</span></a
-          >
+          <a href="#" class="nav__item active" data-view="weather">
+            <i class="ti ti-cloud"></i><span>Weather</span>
+          </a>
+          <div class="nav__group">
+            <button
+              type="button"
+              class="nav__item nav__toggle"
+              id="cities-toggle"
+              aria-expanded="false"
+              aria-controls="cities-menu"
+            >
+              <i class="ti ti-list"></i>
+              <span class="nav__label">
+                Cities<i class="ti ti-chevron-down nav__chevron"></i>
+              </span>
+            </button>
+            <ul class="nav__sub" id="cities-menu" hidden></ul>
+          </div>
+          <a href="#" class="nav__item" data-view="map">
+            <i class="ti ti-map"></i><span>Map</span>
+          </a>
         </nav>
       </aside>
 
@@ -138,6 +150,37 @@
         </ul>
       </aside>
     </div>
+
+    <dialog class="modal glass" id="cities-dialog">
+      <div class="modal__body">
+        <div class="modal__header">
+          <h2>Recent searches</h2>
+          <div class="modal__actions">
+            <button
+              type="button"
+              class="icon-btn"
+              id="cities-clear"
+              aria-label="Clear all"
+            >
+              <i class="ti ti-trash"></i>
+            </button>
+            <button
+              type="button"
+              class="icon-btn"
+              id="cities-close"
+              aria-label="Close"
+            >
+              <i class="ti ti-x"></i>
+            </button>
+          </div>
+        </div>
+        <ul class="cities__list" id="cities-list"></ul>
+        <p class="cities__empty" id="cities-empty">
+          Cities you search for will show up here.
+        </p>
+      </div>
+    </dialog>
+
     <script type="module" src="JS/script.js"></script>
   </body>
 </html>

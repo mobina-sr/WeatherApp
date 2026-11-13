@@ -75,6 +75,32 @@
     flex: 1;
   }
 
+  .nav__group {
+    position: relative;
+    flex: 1;
+  }
+
+  .nav__sub {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    margin: 0;
+    padding: 8px;
+    background: rgba(15, 20, 38, 0.95);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius);
+  }
+
+  .nav__chevron {
+    transform: rotate(180deg);
+  }
+
+  .nav__toggle[aria-expanded="true"] .nav__chevron {
+    transform: rotate(0);
+  }
+
   .search {
     min-height: 52px;
   }

@@ -2,6 +2,7 @@ import { geocodeCity, fetchWeather } from "./api.js";
 import { renderWeather } from "./ui.js";
 import { getUserPosition } from "./helpers.js";
 import { saveLastPlace, loadLastPlace } from "./storage.js";
+import { initCityMenu, setActiveCity } from "./cities.js";
 
 //--------------------------------------
 
@@ -9,6 +10,8 @@ const searchForm = document.getElementById("search-form");
 const searchInput = document.getElementById("search-input");
 const locateBtn = document.getElementById("locate-btn");
 const loader = document.querySelector(".ti-loader");
+
+let currentPlace = null;
 
 //--------------------------------------
 
@@ -23,6 +26,8 @@ async function showPlace(place) {
   const weather = await fetchWeather(place.latitude, place.longitude);
   renderWeather(place, weather);
   saveLastPlace(place);
+  currentPlace = place;
+  setActiveCity(place);
 }
 
 async function run(task) {
@@ -81,3 +86,5 @@ if (lastPlace) {
 } else {
   loadCityWeather("Tehran");
 }
+
+initCityMenu(loadPlaceWeather);
