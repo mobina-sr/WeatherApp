@@ -3,13 +3,14 @@ import { renderWeather } from "./ui.js";
 import { getUserPosition } from "./helpers.js";
 import { saveLastPlace, loadLastPlace } from "./storage.js";
 import { initCityMenu, setActiveCity } from "./cities.js";
+import { initMap, showOnMap } from "./map.js";
 
 //--------------------------------------
 
 const searchForm = document.getElementById("search-form");
 const searchInput = document.getElementById("search-input");
 const locateBtn = document.getElementById("locate-btn");
-const loader = document.querySelector(".ti-loader");
+const loader = document.querySelector(".loader");
 
 let currentPlace = null;
 
@@ -28,6 +29,7 @@ async function showPlace(place) {
   saveLastPlace(place);
   currentPlace = place;
   setActiveCity(place);
+  showOnMap(place);
 }
 
 async function run(task) {
@@ -78,6 +80,30 @@ locateBtn.addEventListener("click", () =>
 );
 
 //------------------------------
+// init
+
+initMap();
+initCityMenu(loadPlaceWeather);
+
+//------------------------------
+// sidebar: smooth scroll
+
+document
+  .querySelector('[data-action="weather"]')
+  .addEventListener("click", (e) => {
+    e.preventDefault();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+document.querySelector('[data-action="map"]').addEventListener("click", (e) => {
+  e.preventDefault();
+  document
+    .getElementById("map-section")
+    .scrollIntoView({ behavior: "smooth", block: "start" });
+});
+
+//------------------------------
+// startup
 
 const lastPlace = loadLastPlace();
 
@@ -86,5 +112,3 @@ if (lastPlace) {
 } else {
   loadCityWeather("Tehran");
 }
-
-initCityMenu(loadPlaceWeather);

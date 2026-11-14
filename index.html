@@ -15,6 +15,10 @@
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
 
     <link rel="stylesheet" href="CSS/style.css" />
     <link rel="stylesheet" href="CSS/sidebar.css" />
@@ -27,7 +31,7 @@
       <aside class="sidebar glass">
         <div class="logo"><i class="ti ti-wind"></i></div>
         <nav class="nav">
-          <a href="#" class="nav__item active" data-view="weather">
+          <a href="#" class="nav__item active" data-action="weather">
             <i class="ti ti-cloud"></i><span>Weather</span>
           </a>
           <div class="nav__group">
@@ -45,7 +49,7 @@
             </button>
             <ul class="nav__sub" id="cities-menu" hidden></ul>
           </div>
-          <a href="#" class="nav__item" data-view="map">
+          <a href="#" class="nav__item" data-action="map">
             <i class="ti ti-map"></i><span>Map</span>
           </a>
         </nav>
@@ -70,7 +74,7 @@
           >
             <i class="ti ti-current-location"></i>
           </button>
-          <i class="ti ti-loader"></i>
+          <i class="ti ti-loader-2 loader"></i>
         </form>
 
         <section class="current glass">
@@ -151,6 +155,12 @@
       </aside>
     </div>
 
+    <section class="map-section glass" id="map-section">
+      <h2>Map</h2>
+      <div id="map"></div>
+    </section>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script type="module" src="JS/script.js"></script>
   </body>
 </html>

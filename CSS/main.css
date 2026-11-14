@@ -43,13 +43,13 @@
   font-size: 24px;
 }
 
-.ti-loader {
+.loader {
   display: inline-block;
   font-size: 24px;
   color: var(--muted);
 }
 
-.ti-loader.loading {
+.loader.loading {
   animation: spin 1s linear infinite;
 }
 
@@ -291,4 +291,30 @@
 .daily__item i {
   font-size: 26px;
   text-align: center;
+}
+
+/* ------map------ */
+.leaflet-tile-pane {
+  filter: invert(1) hue-rotate(180deg) brightness(0.95) contrast(0.9);
+}
+
+.map-section {
+  margin-top: var(--gap);
+  scroll-margin-top: 20px;
+  isolation: isolate;
+}
+
+.map-section h2 {
+  margin-bottom: 16px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+#map {
+  height: 420px;
+  border-radius: 14px;
+  overflow: hidden;
 }

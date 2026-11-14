@@ -153,6 +153,10 @@
   .daily__item i {
     font-size: 22px;
   }
+
+  #map {
+    height: 320px;
+  }
 }
 
 @media (max-width: 400px) {
