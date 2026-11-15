@@ -1,4 +1,4 @@
-import { GEO_URL, WEATHER_URL } from "./config.js";
+import { GEO_URL, WEATHER_URL, REVERSE_URL } from "./config.js";
 
 //------------------------------------
 
@@ -33,4 +33,20 @@ export async function fetchWeather(latitude, longitude) {
   if (!res.ok) throw new Error("Weather request failed");
 
   return res.json();
+}
+
+//------------------------------------
+// reverse
+
+export async function reverseGeocode(latitude, longitude) {
+  const res = await fetch(
+    `${REVERSE_URL}?lat=${latitude}&lon=${longitude}&format=jsonv2&zoom=10&accept-language=en`,
+  );
+  if (!res.ok) throw new Error("Reverse geocoding failed");
+
+  const data = await res.json();
+  const a = data.address;
+  const city = a?.city || a?.town || a?.village || a?.county || a?.state;
+
+  return { city: city ?? "Unknown place", latitude, longitude, country: "" };
 }

@@ -1,4 +1,4 @@
-import { geocodeCity, fetchWeather } from "./api.js";
+import { geocodeCity, fetchWeather, reverseGeocode } from "./api.js";
 import { renderWeather } from "./ui.js";
 import { getUserPosition } from "./helpers.js";
 import { saveLastPlace, loadLastPlace } from "./storage.js";
@@ -75,7 +75,8 @@ searchForm.addEventListener("submit", function (e) {
 locateBtn.addEventListener("click", () =>
   run(async () => {
     const { latitude, longitude } = await getUserPosition();
-    await showPlace({ city: "My location", latitude, longitude, country: "" });
+    const place = await reverseGeocode(latitude, longitude);
+    await showPlace(place);
   }),
 );
 
