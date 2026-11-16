@@ -157,6 +157,13 @@
   #map {
     height: 320px;
   }
+
+  .toasts {
+    top: 12px;
+    right: 12px;
+    left: 12px;
+    width: auto;
+  }
 }
 
 @media (max-width: 400px) {

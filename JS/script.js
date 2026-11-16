@@ -4,6 +4,7 @@ import { getUserPosition } from "./helpers.js";
 import { saveLastPlace, loadLastPlace } from "./storage.js";
 import { initCityMenu, setActiveCity } from "./cities.js";
 import { initMap, showOnMap, onMapClick } from "./map.js";
+import { showToast } from "./toast.js";
 
 //--------------------------------------
 
@@ -19,12 +20,17 @@ let busy = false;
 
 const USER_ERRORS = {
   "City not found": "City not found. Try another name.",
-  "Location unavailable":
-    "Could not get your location. Check the browser permission.",
+  "Location denied":
+    "Location access was denied. Allow it in your browser settings.",
+  "Location timeout": "Getting your location took too long. Try again.",
+  "Location unavailable": "Could not get your location.",
   "Geolocation unsupported": "Your browser does not support geolocation.",
 };
 
-async function showPlace(place, { recenter = true } = {}) {
+async function showPlace(
+  place,
+  { recenter = true, toast = `Weather updated for ${place.city}` } = {},
+) {
   const weather = await fetchWeather(place.latitude, place.longitude);
 
   renderWeather(place, weather);
@@ -34,10 +40,16 @@ async function showPlace(place, { recenter = true } = {}) {
     recenter,
     label: `${place.city} · ${Math.round(weather.current.temperature_2m)}°`,
   });
+
+  if (toast) showToast(toast, "success");
 }
 
 async function run(task) {
-  if (busy) return;
+  if (busy) {
+    showToast("Still loading, one moment...", "info", 1500);
+    return;
+  }
+
   busy = true;
 
   try {
@@ -45,8 +57,10 @@ async function run(task) {
     await task();
   } catch (error) {
     console.error(error);
-    alert(
+    showToast(
       USER_ERRORS[error.message] ?? "Unable to load weather. Please try again.",
+      "error",
+      4000,
     );
   } finally {
     searchInput.value = "";
@@ -58,15 +72,15 @@ async function run(task) {
 //--------------------------------------
 // search city
 
-function loadCityWeather(city) {
+function loadCityWeather(city, options) {
   return run(async () => {
     const place = await geocodeCity(city);
-    await showPlace(place);
+    await showPlace(place, options);
   });
 }
 
-function loadPlaceWeather(place) {
-  return run(() => showPlace(place));
+function loadPlaceWeather(place, options) {
+  return run(() => showPlace(place, options));
 }
 
 //------------------------------
@@ -76,15 +90,23 @@ searchForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
   const city = searchInput.value.trim();
-  if (!city) return;
+  if (!city) {
+    showToast("Type a city name first.", "info");
+    return;
+  }
   loadCityWeather(city);
 });
 
 locateBtn.addEventListener("click", () =>
   run(async () => {
+    showToast("Getting your location...", "info", 2000);
+
     const { latitude, longitude } = await getUserPosition();
     const place = await reverseGeocode(latitude, longitude);
-    await showPlace(place);
+
+    await showPlace(place, {
+      toast: `Showing weather for your location: ${place.city}`,
+    });
   }),
 );
 
@@ -95,6 +117,8 @@ initMap();
 
 onMapClick((lat, lng) =>
   run(async () => {
+    showToast("Looking up this spot...", "info", 1500);
+
     const place = await reverseGeocode(lat, lng);
     await showPlace(place, { recenter: false });
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -126,7 +150,7 @@ document.querySelector('[data-action="map"]').addEventListener("click", (e) => {
 const lastPlace = loadLastPlace();
 
 if (lastPlace) {
-  loadPlaceWeather(lastPlace);
+  loadPlaceWeather(lastPlace, { toast: false });
 } else {
-  loadCityWeather("Tehran");
+  loadCityWeather("Tehran", { toast: false });
 }
