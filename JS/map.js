@@ -16,7 +16,16 @@ export function initMap() {
   map.on("mouseout", () => map.scrollWheelZoom.disable());
 }
 
-export function showOnMap(place) {
+export function onMapClick(handler) {
+  if (!map) return;
+
+  map.on("click", (e) => {
+    const { lat, lng } = e.latlng.wrap();
+    handler(lat, lng);
+  });
+}
+
+export function showOnMap(place, { recenter = true, label = "" } = {}) {
   if (!map) return;
 
   const pos = [place.latitude, place.longitude];
@@ -30,5 +39,11 @@ export function showOnMap(place) {
       fillOpacity: 0.6,
     }).addTo(map);
 
-  map.setView(pos, 8);
+  if (label) {
+    const el = document.createElement("div");
+    el.textContent = label;
+    marker.bindPopup(el).openPopup();
+  }
+
+  if (recenter) map.setView(pos, 8);
 }

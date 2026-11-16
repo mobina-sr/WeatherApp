@@ -3,7 +3,7 @@ import { renderWeather } from "./ui.js";
 import { getUserPosition } from "./helpers.js";
 import { saveLastPlace, loadLastPlace } from "./storage.js";
 import { initCityMenu, setActiveCity } from "./cities.js";
-import { initMap, showOnMap } from "./map.js";
+import { initMap, showOnMap, onMapClick } from "./map.js";
 
 //--------------------------------------
 
@@ -13,6 +13,7 @@ const locateBtn = document.getElementById("locate-btn");
 const loader = document.querySelector(".loader");
 
 let currentPlace = null;
+let busy = false;
 
 //--------------------------------------
 
@@ -23,16 +24,22 @@ const USER_ERRORS = {
   "Geolocation unsupported": "Your browser does not support geolocation.",
 };
 
-async function showPlace(place) {
+async function showPlace(place, { recenter = true } = {}) {
   const weather = await fetchWeather(place.latitude, place.longitude);
+
   renderWeather(place, weather);
   saveLastPlace(place);
-  currentPlace = place;
   setActiveCity(place);
-  showOnMap(place);
+  showOnMap(place, {
+    recenter,
+    label: `${place.city} · ${Math.round(weather.current.temperature_2m)}°`,
+  });
 }
 
 async function run(task) {
+  if (busy) return;
+  busy = true;
+
   try {
     loader.classList.add("loading");
     await task();
@@ -44,6 +51,7 @@ async function run(task) {
   } finally {
     searchInput.value = "";
     loader.classList.remove("loading");
+    busy = false;
   }
 }
 
@@ -84,6 +92,15 @@ locateBtn.addEventListener("click", () =>
 // init
 
 initMap();
+
+onMapClick((lat, lng) =>
+  run(async () => {
+    const place = await reverseGeocode(lat, lng);
+    await showPlace(place, { recenter: false });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }),
+);
+
 initCityMenu(loadPlaceWeather);
 
 //------------------------------
