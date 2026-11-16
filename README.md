@@ -1,6 +1,6 @@
 # Weather Dashboard
 
-A responsive weather app built with HTML, CSS and vanilla JavaScript. Weather data comes from the free [Open-Meteo](https://open-meteo.com/) API (no API key needed).
+A responsive weather app built with HTML, CSS and JavaScript. Weather data comes from the free [Open-Meteo](https://open-meteo.com/) API (no API key needed).
 
 **Live demo:** [mobina-sr.github.io/WeatherApp](https://mobina-sr.github.io/WeatherApp/)
 
